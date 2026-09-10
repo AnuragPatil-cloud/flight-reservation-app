@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flight-checkin-app
+  namespace: flight-reservation
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: flight-checkin-app
+  template:
+    metadata:
+      labels:
+        app: flight-checkin-app
+    spec:
+      containers:
+        - name: flight-checkin-app
+          image: DOCKERHUB_USERNAME/flight-checkin-app:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8081
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mariadb:3306/checkin_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: flight-reservation-secrets
+                  key: DB_ROOT_PASSWORD
+            - name: BOOKING_SERVICE_URL
+              value: http://flight-reservation-service:8080/api/bookings
+            - name: FRONTEND_URL
+              value: http://localhost
+          readinessProbe:
+            tcpSocket:
+              port: 8081
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 8081
+            initialDelaySeconds: 60
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 50m
+              memory: 256Mi
+            limits:
+              cpu: 300m
+              memory: 512Mi

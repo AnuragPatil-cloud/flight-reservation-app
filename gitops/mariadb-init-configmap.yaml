@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mariadb-init
+  namespace: flight-reservation
+data:
+  01-databases.sql: |
+    CREATE DATABASE IF NOT EXISTS flightdb;
+    CREATE DATABASE IF NOT EXISTS checkin_db;

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: flight-reservation-service
+  namespace: flight-reservation
+spec:
+  type: ClusterIP
+  selector:
+    app: flight-reservation-app
+  ports:
+    - port: 8080
+      targetPort: 8080
+      name: http
