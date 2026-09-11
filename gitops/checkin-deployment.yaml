@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: flight-checkin-app
-          image: DOCKERHUB_USERNAME/flight-checkin-app:latest
+          image: anuragpatilcloud/flight-checkin-app:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8081

@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: flight-frontend
-          image: DOCKERHUB_USERNAME/flight-frontend:latest
+          image: anuragpatilcloud/flight-frontend:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80
