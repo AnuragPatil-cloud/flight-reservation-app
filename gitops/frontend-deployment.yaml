@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: flight-frontend
-          image: anuragpatilcloud/flight-frontend:latest
+          image: anuragpatilcloud/flight-frontend:6
           imagePullPolicy: Always
           ports:
             - containerPort: 80
