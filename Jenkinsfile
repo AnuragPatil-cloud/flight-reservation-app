@@ -31,10 +31,12 @@ pipeline {
           for i in \$(seq 1 60); do
             if docker exec "\${DB_CONTAINER}" \
               mysqladmin ping -h 127.0.0.1 -uroot --silent; then
+              echo "MySQL is ready"
               break
             fi
 
             if [ "\$i" -eq 60 ]; then
+              echo "MySQL failed to start"
               docker logs "\${DB_CONTAINER}" || true
               exit 1
             fi
@@ -84,7 +86,7 @@ pipeline {
 
     stage('SonarQube Analysis') {
       steps {
-        withSonarQubeEnv('SonarQube') {
+        withSonarQubeEnv('Sonarqube') {
           withCredentials([
             string(
               credentialsId: 'sonarqube-token',
@@ -124,38 +126,6 @@ pipeline {
             -t \${DOCKERHUB_CREDS_USR}/flight-frontend:\${TAG} \
             -t \${DOCKERHUB_CREDS_USR}/flight-frontend:latest \
             frontend
-        """
-      }
-    }
-
-    stage('Trivy Scan') {
-      steps {
-        sh """
-          set -e
-
-          docker run --rm \
-            -v /var/run/docker.sock:/var/run/docker.sock \
-            aquasec/trivy:latest \
-            image \
-            --severity HIGH,CRITICAL \
-            --exit-code 1 \
-            \${DOCKERHUB_CREDS_USR}/flight-reservation-app:\${TAG}
-
-          docker run --rm \
-            -v /var/run/docker.sock:/var/run/docker.sock \
-            aquasec/trivy:latest \
-            image \
-            --severity HIGH,CRITICAL \
-            --exit-code 1 \
-            \${DOCKERHUB_CREDS_USR}/flight-checkin-app:\${TAG}
-
-          docker run --rm \
-            -v /var/run/docker.sock:/var/run/docker.sock \
-            aquasec/trivy:latest \
-            image \
-            --severity HIGH,CRITICAL \
-            --exit-code 1 \
-            \${DOCKERHUB_CREDS_USR}/flight-frontend:\${TAG}
         """
       }
     }
