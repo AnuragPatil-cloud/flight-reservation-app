@@ -17,13 +17,11 @@ pipeline {
     stage('Backend Tests') {
       steps {
         dir('FlightReservationApplication') {
-          sh 'chmod +x mvnw'
-          sh './mvnw clean verify'
+          sh 'mvn clean verify'
         }
 
         dir('FlightCheckInApplication') {
-          sh 'chmod +x mvnw'
-          sh './mvnw clean verify'
+          sh 'mvn clean verify'
         }
       }
     }
