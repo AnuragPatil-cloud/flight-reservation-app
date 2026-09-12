@@ -24,30 +24,38 @@ spec:
             - containerPort: 8080
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:mysql://mariadb:3306/flight-reservation-db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+              value: "jdbc:mysql://mariadb:3306/flight-reservation-db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true"
             - name: SPRING_DATASOURCE_USERNAME
-              value: root
+              value: "root"
             - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: flight-reservation-secrets
                   key: DB_ROOT_PASSWORD
+            - name: SPRING_JPA_DATABASE_PLATFORM
+              value: "org.hibernate.dialect.MariaDBDialect"
+            - name: SPRING_JPA_PROPERTIES_HIBERNATE_AUTO_QUOTE_KEYWORD
+              value: "true"
             - name: FRONTEND_URL
-              value: http://localhost
-          readinessProbe:
-            tcpSocket:
-              port: 8080
-            initialDelaySeconds: 30
-            periodSeconds: 10
+              value: "http://localhost"
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "512Mi"
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
           livenessProbe:
             tcpSocket:
               port: 8080
             initialDelaySeconds: 60
             periodSeconds: 20
-          resources:
-            requests:
-              cpu: 100m
-              memory: 512Mi
-            limits:
-              cpu: 500m
-              memory: 1Gi
+            timeoutSeconds: 1
+            failureThreshold: 3
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 1
+            failureThreshold: 3

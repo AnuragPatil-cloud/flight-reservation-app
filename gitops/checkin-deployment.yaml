@@ -24,32 +24,36 @@ spec:
             - containerPort: 8081
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:mysql://mariadb:3306/checkin_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+              value: "jdbc:mysql://mariadb:3306/checkin_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true"
             - name: SPRING_DATASOURCE_USERNAME
-              value: root
+              value: "root"
             - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: flight-reservation-secrets
                   key: DB_ROOT_PASSWORD
             - name: BOOKING_SERVICE_URL
-              value: http://flight-reservation-service:8080/api/bookings
+              value: "http://flight-reservation-service:8080/api/bookings"
             - name: FRONTEND_URL
-              value: http://localhost
-          readinessProbe:
-            tcpSocket:
-              port: 8081
-            initialDelaySeconds: 30
-            periodSeconds: 10
+              value: "http://flight-frontend"
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "512Mi"
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
           livenessProbe:
             tcpSocket:
               port: 8081
             initialDelaySeconds: 60
             periodSeconds: 20
-          resources:
-            requests:
-              cpu: 50m
-              memory: 256Mi
-            limits:
-              cpu: 300m
-              memory: 512Mi
+            timeoutSeconds: 1
+            failureThreshold: 3
+          readinessProbe:
+            tcpSocket:
+              port: 8081
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 1
+            failureThreshold: 3
