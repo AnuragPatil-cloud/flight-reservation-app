@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: flight-checkin-app
-          image: anuragpatilcloud/flight-checkin-app:7
+          image: anuragpatilcloud/flight-checkin-app:8
           imagePullPolicy: Always
           ports:
             - containerPort: 8081
