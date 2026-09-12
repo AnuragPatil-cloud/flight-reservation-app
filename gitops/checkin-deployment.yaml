@@ -32,6 +32,10 @@ spec:
                 secretKeyRef:
                   name: flight-reservation-secrets
                   key: DB_ROOT_PASSWORD
+            - name: SPRING_JPA_DATABASE_PLATFORM
+              value: "org.hibernate.dialect.MariaDBDialect"
+            - name: SPRING_JPA_PROPERTIES_HIBERNATE_AUTO_QUOTE_KEYWORD
+              value: "true"
             - name: BOOKING_SERVICE_URL
               value: "http://flight-reservation-service:8080/api/bookings"
             - name: FRONTEND_URL
