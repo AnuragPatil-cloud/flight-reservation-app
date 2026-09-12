@@ -3,7 +3,7 @@
 A full-stack flight reservation and check-in platform, built as a microservices system and shipped to production with an end-to-end DevOps pipeline: Terraform-provisioned Azure infrastructure, Jenkins CI, Docker, GitOps with Argo CD on AKS, and Prometheus/Grafana monitoring.
 
 <p align="center">
-  <img src="<FRA-SCREENSHOTS/FRS-Home.png>" alt="Flight Reservation System home page" width="850">
+  <img src="FRA-SCREENSHOTS/FRS-Home.png" alt="Flight Reservation System home page" width="850">
 </p>
 
 <p align="center">
@@ -75,11 +75,11 @@ Everything from provisioning the Azure resource groups to promoting a new contai
 
 | Home | Login | Register |
 |---|---|---|
-| <img src="<FRA-SCREENSHOTS/FRS-Home.png>" width="280"> | <img src="<FRA-SCREENSHOTS/FRS-Login page.png>" width="280"> | <img src="<FRA-SCREENSHOTS/FRS-Registration page.png>" width="280"> |
+| <img src="FRA-SCREENSHOTS/FRS-Home.png" width="280"> | <img src="FRA-SCREENSHOTS/FRS-Login page.png" width="280"> | <img src="FRA-SCREENSHOTS/FRS-Registration page.png" width="280"> |
 
 | Search flights | Profile | Contact |
 |---|---|---|
-| <img src="<FRA-SCREENSHOTS/FRS-search flights.png>" width="280"> | <img src="<FRA-SCREENSHOTS/FRS-profile page.png>" width="280"> | <img src="<FRA-SCREENSHOTS/FRS-contact page.png>" width="280"> |
+| <img src="FRA-SCREENSHOTS/FRS-search flights.png" width="280"> | <img src="FRA-SCREENSHOTS/FRS-profile page.png" width="280"> | <img src="FRA-SCREENSHOTS/FRS-contact page.png" width="280"> |
 
 ## Architecture
 
@@ -205,11 +205,11 @@ Provisioning is split into composable modules under `terraform/modules/`:
 The VM and AKS workloads live in **separate virtual networks** with their own resource groups, so the always-on cluster and the more elastic CI/monitoring VMs can be sized, budgeted, and torn down independently.
 
 <p align="center">
-  <img src="<FRA-SCREENSHOTS/terraform output.png>" alt="terraform output showing provisioned resource names" width="700">
+  <img src="FRA-SCREENSHOTS/terraform output.png" alt="terraform output showing provisioned resource names" width="700">
 </p>
 
 <p align="center">
-  <img src="<FRA-SCREENSHOTS/az resource list.png>" alt="az resource list of everything provisioned" width="700">
+  <img src="FRA-SCREENSHOTS/az resource list.png" alt="az resource list of everything provisioned" width="700">
 </p>
 
 Applying the stack requires a `terraform.tfvars` with at minimum your Azure `subscription_id`, a `project_name`, and an SSH public key path — see `terraform/variables.tf` for the full set of inputs and their defaults (regions, VM sizes, AKS node size, environment name).
@@ -228,23 +228,23 @@ The root [`Jenkinsfile`](./Jenkinsfile) runs on the Terraform-provisioned CI VM 
 8. **Post Actions** — clean up the ephemeral database container and dangling images
 
 <p align="center">
-  <img src="<FRA-SCREENSHOTS/jenkins pipeline work done -sucessfully run.png>" alt="Jenkins pipeline — all stages green" width="700">
+  <img src="FRA-SCREENSHOTS/jenkins pipeline work done -sucessfully run.png" alt="Jenkins pipeline — all stages green" width="700">
 </p>
 
 <p align="center">
-  <img src="<FRA-SCREENSHOTS/jenkins test pipeline.png>" alt="Jenkins pipeline stage view" width="700">
+  <img src="FRA-SCREENSHOTS/jenkins test pipeline.png" alt="Jenkins pipeline stage view" width="700">
 </p>
 
 Getting a fully green pipeline took a few iterations, as any real CI setup does:
 
 <p align="center">
-  <img src="<FRA-SCREENSHOTS/pipeline failure.png>" alt="Jenkins build history during initial pipeline debugging" width="700">
+  <img src="FRA-SCREENSHOTS/pipeline failure.png" alt="Jenkins build history during initial pipeline debugging" width="700">
 </p>
 
 The CI VM's toolchain (Java 21, Maven, Docker, Terraform, Azure CLI) is provisioned once by Terraform's `vm` module:
 
 <p align="center">
-  <img src="<FRA-SCREENSHOTS/tools installed.png>" alt="CI VM toolchain versions" width="700">
+  <img src="FRA-SCREENSHOTS/tools installed.png" alt="CI VM toolchain versions" width="700">
 </p>
 
 Required Jenkins credentials are documented in [`docs/JENKINS-CREDENTIALS.md`](./docs/JENKINS-CREDENTIALS.md):
@@ -261,11 +261,11 @@ The `gitops/` directory is a Kustomize-style manifest set — namespace, MariaDB
 [`argocd-application.yaml`](./argocd-application.yaml) points Argo CD at that folder on `main` with **automated sync, self-heal, and prune** enabled, so any commit that lands on `main` (including the Jenkins image-tag bump) is reconciled onto the cluster within seconds, and any manual `kubectl` drift is reverted automatically.
 
 <p align="center">
-  <img src="<FRA-SCREENSHOTS/argo cd app.png>" alt="Argo CD application tree — healthy and synced" width="700">
+  <img src="FRA-SCREENSHOTS/argo cd app.png" alt="Argo CD application tree — healthy and synced" width="700">
 </p>
 
 <p align="center">
-  <img src="<FRA-SCREENSHOTS/argo cd info.png>" alt="Argo CD sync details and resource list" width="700">
+  <img src="FRA-SCREENSHOTS/argo cd info.png" alt="Argo CD sync details and resource list" width="700">
 </p>
 
 ```bash
@@ -288,7 +288,7 @@ helm upgrade --install kube-prometheus-stack prometheus-community/kube-prometheu
 ```
 
 <p align="center">
-  <img src="<FRA-SCREENSHOTS/vm2-monitoring vm setup.png>" alt="Monitoring VM toolchain — kubectl, Helm, Argo CD CLI" width="700">
+  <img src="FRA-SCREENSHOTS/vm2-monitoring vm setup.png" alt="Monitoring VM toolchain — kubectl, Helm, Argo CD CLI" width="700">
 </p>
 
 Application-level metrics can be added later by enabling the Spring Boot Actuator/Micrometer endpoints and pointing a `ServiceMonitor` at them.
