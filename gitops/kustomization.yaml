@@ -3,7 +3,6 @@ kind: Kustomization
 namespace: flight-reservation
 resources:
   - namespace.yaml
-  - secret.yaml
   - mariadb-init-configmap.yaml
   - mariadb-pvc.yaml
   - mariadb-deployment.yaml
