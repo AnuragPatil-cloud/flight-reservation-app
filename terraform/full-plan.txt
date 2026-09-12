@@ -1,0 +1,1127 @@
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # module.aks.azurerm_kubernetes_cluster.this will be created
+  + resource "azurerm_kubernetes_cluster" "this" {
+      + ai_toolchain_operator_enabled       = false
+      + current_kubernetes_version          = (known after apply)
+      + dns_prefix                          = "flight-reservation-application-dev"
+      + fqdn                                = (known after apply)
+      + http_application_routing_zone_name  = (known after apply)
+      + id                                  = (known after apply)
+      + kube_admin_config                   = (sensitive value)
+      + kube_admin_config_raw               = (sensitive value)
+      + kube_config                         = (sensitive value)
+      + kube_config_raw                     = (sensitive value)
+      + kubernetes_version                  = (known after apply)
+      + location                            = "centralindia"
+      + name                                = "flight-reservation-application-dev-aks"
+      + node_os_upgrade_channel             = "NodeImage"
+      + node_resource_group                 = (known after apply)
+      + node_resource_group_id              = (known after apply)
+      + oidc_issuer_enabled                 = true
+      + oidc_issuer_url                     = (known after apply)
+      + portal_fqdn                         = (known after apply)
+      + private_cluster_enabled             = false
+      + private_cluster_public_fqdn_enabled = false
+      + private_dns_zone_id                 = (known after apply)
+      + private_fqdn                        = (known after apply)
+      + resource_group_name                 = "flight-reservation-application-dev-rg"
+      + role_based_access_control_enabled   = true
+      + run_command_enabled                 = true
+      + sku_tier                            = "Free"
+      + support_plan                        = "KubernetesOfficial"
+      + tags                                = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "flight-reservation-application"
+        }
+      + workload_identity_enabled           = true
+
+      + auto_scaler_profile (known after apply)
+
+      + bootstrap_profile (known after apply)
+
+      + default_node_pool {
+          + kubelet_disk_type            = (known after apply)
+          + max_pods                     = (known after apply)
+          + name                         = "system"
+          + node_count                   = 1
+          + node_labels                  = (known after apply)
+          + only_critical_addons_enabled = true
+          + orchestrator_version         = (known after apply)
+          + os_disk_size_gb              = 30
+          + os_disk_type                 = "Managed"
+          + os_sku                       = (known after apply)
+          + scale_down_mode              = "Delete"
+          + type                         = "VirtualMachineScaleSets"
+          + ultra_ssd_enabled            = false
+          + vm_size                      = "Standard_D2s_v3"
+          + vnet_subnet_id               = (known after apply)
+          + workload_runtime             = (known after apply)
+        }
+
+      + identity {
+          + identity_ids = (known after apply)
+          + principal_id = (known after apply)
+          + tenant_id    = (known after apply)
+          + type         = "UserAssigned"
+        }
+
+      + kubelet_identity (known after apply)
+
+      + linux_profile {
+          + admin_username = "azureadmin"
+
+          + ssh_key {
+              + key_data = <<-EOT
+                    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDsjorovoUv073q8kMgFoLQYLbxQqTCAoKMOm/ae2jHzpKtFINsd4GPL5QBAGNR3wX+2K1iXR9TRAjkW5V0Y1P1MII2AXkFIRnpKLmCNthQXgHB932kpC53XmMqIdi736umgP/0uavQmZL4vs+pS870gjkWDXQHZYrj9CRzmzVE3dR3c9A2rovhkT9vH3/xd/5Gy+Rlirh2VwelPCs2I7EKG8MmpqD8j0l0q9UvoDJQAj4KSWXiHewr03D4eFNVaX5cCQJgX/XXhY0VmsWLKJ5osYyyTLq3jNWRrGb2nmL8IV+j5T8fsrh3Stm6b1zOsfg5SoawVOAj2KtWOwlMpeyUVB05Rr9vLmBCb7iYbK7QaT1LW7ZHVWeI3tt2HxhjvoLV7LAmfOuyAKxU03D1II/WQfN4qchKpteOeJ5yi23OIUnVv09/7B/JICfd23BINPptOI/qpcftyjc7WXihPwIqgwoKdJ+hP/pMahYX1gMcc0Vp2Hh+sTFCidk1KdkUM+8k3rcpz74tPgoR7hkODX1q2Lr9J9tNWb0kbrqJK56Y0PDCQSbEpmLKGziPjT31+DSX0BPEIhMcFbLmuODfu0zdqxrwwjycagfeHHZ+Ej9rK1O5YNGLxBFLvpxQgeO+oxS4a21bOiwGbgYOoWra0ZKmm1/0Rt1qHh20oSoqBNztYw== flight-reservation-application
+                EOT
+            }
+        }
+
+      + network_profile {
+          + dns_service_ip      = (known after apply)
+          + ip_versions         = (known after apply)
+          + load_balancer_sku   = "standard"
+          + network_data_plane  = "azure"
+          + network_mode        = (known after apply)
+          + network_plugin      = "azure"
+          + network_plugin_mode = "overlay"
+          + network_policy      = "azure"
+          + outbound_type       = "loadBalancer"
+          + pod_cidr            = (known after apply)
+          + pod_cidrs           = (known after apply)
+          + service_cidr        = (known after apply)
+          + service_cidrs       = (known after apply)
+
+          + load_balancer_profile (known after apply)
+
+          + nat_gateway_profile (known after apply)
+        }
+
+      + node_provisioning_profile (known after apply)
+
+      + windows_profile (known after apply)
+    }
+
+  # module.aks.azurerm_kubernetes_cluster_node_pool.application will be created
+  + resource "azurerm_kubernetes_cluster_node_pool" "application" {
+      + auto_scaling_enabled  = true
+      + id                    = (known after apply)
+      + kubelet_disk_type     = (known after apply)
+      + kubernetes_cluster_id = (known after apply)
+      + max_count             = 3
+      + max_pods              = (known after apply)
+      + min_count             = 2
+      + mode                  = "User"
+      + name                  = "app"
+      + node_count            = (known after apply)
+      + node_image_version    = (known after apply)
+      + node_labels           = {
+          + "workload" = "application"
+        }
+      + orchestrator_version  = (known after apply)
+      + os_disk_size_gb       = 30
+      + os_disk_type          = "Managed"
+      + os_sku                = (known after apply)
+      + os_type               = "Linux"
+      + priority              = "Regular"
+      + scale_down_mode       = "Delete"
+      + spot_max_price        = -1
+      + tags                  = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "flight-reservation-application"
+        }
+      + ultra_ssd_enabled     = false
+      + vm_size               = "Standard_D2s_v3"
+      + vnet_subnet_id        = (known after apply)
+    }
+
+  # module.aks.azurerm_role_assignment.network_contributor will be created
+  + resource "azurerm_role_assignment" "network_contributor" {
+      + condition_version                = (known after apply)
+      + id                               = (known after apply)
+      + name                             = (known after apply)
+      + principal_id                     = (known after apply)
+      + principal_type                   = (known after apply)
+      + role_definition_id               = (known after apply)
+      + role_definition_name             = "Network Contributor"
+      + scope                            = (known after apply)
+      + skip_service_principal_aad_check = (known after apply)
+    }
+
+  # module.aks.azurerm_user_assigned_identity.aks will be created
+  + resource "azurerm_user_assigned_identity" "aks" {
+      + client_id           = (known after apply)
+      + id                  = (known after apply)
+      + location            = "centralindia"
+      + name                = "flight-reservation-application-dev-aks-identity"
+      + principal_id        = (known after apply)
+      + resource_group_name = "flight-reservation-application-dev-rg"
+      + tenant_id           = (known after apply)
+    }
+
+  # module.budgets.azurerm_consumption_budget_resource_group.this will be created
+  + resource "azurerm_consumption_budget_resource_group" "this" {
+      + amount            = 300
+      + etag              = (known after apply)
+      + id                = (known after apply)
+      + name              = "flight-reservation-application-dev-monthly-budget"
+      + resource_group_id = (known after apply)
+      + time_grain        = "Monthly"
+
+      + notification {
+          + contact_emails = []
+          + contact_groups = (known after apply)
+          + contact_roles  = []
+          + enabled        = true
+          + operator       = "GreaterThanOrEqualTo"
+          + threshold      = 100
+          + threshold_type = "Forecasted"
+        }
+      + notification {
+          + contact_emails = []
+          + contact_groups = (known after apply)
+          + contact_roles  = []
+          + enabled        = true
+          + operator       = "GreaterThanOrEqualTo"
+          + threshold      = 80
+          + threshold_type = "Actual"
+        }
+
+      + time_period {
+          + end_date   = "2027-09-30T00:00:00Z"
+          + start_date = "2026-09-01T00:00:00Z"
+        }
+    }
+
+  # module.database.azurerm_mysql_flexible_database.this will be created
+  + resource "azurerm_mysql_flexible_database" "this" {
+      + charset             = "utf8mb4"
+      + collation           = "utf8mb4_unicode_ci"
+      + id                  = (known after apply)
+      + name                = "flight_reservation"
+      + resource_group_name = "flight-reservation-application-dev-rg"
+      + server_name         = (known after apply)
+    }
+
+  # module.database.azurerm_mysql_flexible_server.this will be created
+  + resource "azurerm_mysql_flexible_server" "this" {
+      + administrator_login           = "flightadmin"
+      + administrator_password        = (sensitive value)
+      + administrator_password_wo     = (write-only attribute)
+      + backup_retention_days         = 7
+      + delegated_subnet_id           = (known after apply)
+      + fqdn                          = (known after apply)
+      + geo_redundant_backup_enabled  = false
+      + id                            = (known after apply)
+      + location                      = "centralindia"
+      + name                          = (known after apply)
+      + private_dns_zone_id           = (known after apply)
+      + public_network_access         = "Disabled"
+      + public_network_access_enabled = (known after apply)
+      + replica_capacity              = (known after apply)
+      + replication_role              = (known after apply)
+      + resource_group_name           = "flight-reservation-application-dev-rg"
+      + sku_name                      = "B_Standard_B1ms"
+      + tags                          = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "flight-reservation-application"
+        }
+      + version                       = "8.0.21"
+      + zone                          = (known after apply)
+
+      + storage {
+          + auto_grow_enabled   = true
+          + io_scaling_enabled  = false
+          + iops                = (known after apply)
+          + log_on_disk_enabled = false
+          + size_gb             = 20
+        }
+    }
+
+  # module.database.azurerm_private_dns_zone.mysql will be created
+  + resource "azurerm_private_dns_zone" "mysql" {
+      + id                                                    = (known after apply)
+      + max_number_of_record_sets                             = (known after apply)
+      + max_number_of_virtual_network_links                   = (known after apply)
+      + max_number_of_virtual_network_links_with_registration = (known after apply)
+      + name                                                  = (known after apply)
+      + number_of_record_sets                                 = (known after apply)
+      + resource_group_name                                   = "flight-reservation-application-dev-rg"
+
+      + soa_record (known after apply)
+    }
+
+  # module.database.azurerm_private_dns_zone_virtual_network_link.mysql will be created
+  + resource "azurerm_private_dns_zone_virtual_network_link" "mysql" {
+      + id                    = (known after apply)
+      + name                  = "flight-reservation-application-dev-mysql-link"
+      + private_dns_zone_name = (known after apply)
+      + registration_enabled  = false
+      + resolution_policy     = (known after apply)
+      + resource_group_name   = "flight-reservation-application-dev-rg"
+      + virtual_network_id    = (known after apply)
+    }
+
+  # module.database.random_password.admin will be created
+  + resource "random_password" "admin" {
+      + bcrypt_hash      = (sensitive value)
+      + id               = (known after apply)
+      + length           = 24
+      + lower            = true
+      + min_lower        = 0
+      + min_numeric      = 0
+      + min_special      = 0
+      + min_upper        = 0
+      + number           = true
+      + numeric          = true
+      + override_special = "!@#%^*()-_=+"
+      + result           = (sensitive value)
+      + special          = true
+      + upper            = true
+    }
+
+  # module.database.random_string.suffix will be created
+  + resource "random_string" "suffix" {
+      + id          = (known after apply)
+      + length      = 5
+      + lower       = true
+      + min_lower   = 0
+      + min_numeric = 0
+      + min_special = 0
+      + min_upper   = 0
+      + number      = true
+      + numeric     = true
+      + result      = (known after apply)
+      + special     = false
+      + upper       = false
+    }
+
+  # module.network.azurerm_network_security_group.ci will be created
+  + resource "azurerm_network_security_group" "ci" {
+      + id                  = (known after apply)
+      + location            = "centralindia"
+      + name                = "flight-reservation-application-dev-ci-nsg"
+      + resource_group_name = "flight-reservation-application-dev-rg"
+      + security_rule       = [
+          + {
+              + access                                     = "Allow"
+              + destination_address_prefix                 = "*"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
+              + destination_port_range                     = "22"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "Allow-SSH"
+              + priority                                   = 100
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "*"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+                # (1 unchanged attribute hidden)
+            },
+          + {
+              + access                                     = "Allow"
+              + destination_address_prefix                 = "*"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
+              + destination_port_range                     = "8080"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "Allow-Jenkins"
+              + priority                                   = 110
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "*"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+                # (1 unchanged attribute hidden)
+            },
+          + {
+              + access                                     = "Allow"
+              + destination_address_prefix                 = "*"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
+              + destination_port_range                     = "9000"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "Allow-SonarQube"
+              + priority                                   = 120
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "*"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+                # (1 unchanged attribute hidden)
+            },
+        ]
+    }
+
+  # module.network.azurerm_network_security_group.monitoring will be created
+  + resource "azurerm_network_security_group" "monitoring" {
+      + id                  = (known after apply)
+      + location            = "centralindia"
+      + name                = "flight-reservation-application-dev-monitoring-nsg"
+      + resource_group_name = "flight-reservation-application-dev-rg"
+      + security_rule       = [
+          + {
+              + access                                     = "Allow"
+              + destination_address_prefix                 = "*"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
+              + destination_port_range                     = "22"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "Allow-SSH"
+              + priority                                   = 100
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "*"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+                # (1 unchanged attribute hidden)
+            },
+          + {
+              + access                                     = "Allow"
+              + destination_address_prefix                 = "*"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
+              + destination_port_range                     = "3000"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "Allow-Grafana"
+              + priority                                   = 110
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "*"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+                # (1 unchanged attribute hidden)
+            },
+          + {
+              + access                                     = "Allow"
+              + destination_address_prefix                 = "*"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
+              + destination_port_range                     = "9090"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "Allow-Prometheus"
+              + priority                                   = 120
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "*"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+                # (1 unchanged attribute hidden)
+            },
+        ]
+    }
+
+  # module.network.azurerm_resource_group.this will be created
+  + resource "azurerm_resource_group" "this" {
+      + id       = (known after apply)
+      + location = "centralindia"
+      + name     = "flight-reservation-application-dev-rg"
+      + tags     = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "flight-reservation-application"
+        }
+    }
+
+  # module.network.azurerm_subnet.aks will be created
+  + resource "azurerm_subnet" "aks" {
+      + address_prefixes                              = [
+          + "10.20.1.0/24",
+        ]
+      + default_outbound_access_enabled               = true
+      + id                                            = (known after apply)
+      + name                                          = "snet-aks"
+      + private_endpoint_network_policies             = "Disabled"
+      + private_link_service_network_policies_enabled = true
+      + resource_group_name                           = "flight-reservation-application-dev-rg"
+      + virtual_network_name                          = "flight-reservation-application-dev-vnet"
+    }
+
+  # module.network.azurerm_subnet.ci will be created
+  + resource "azurerm_subnet" "ci" {
+      + address_prefixes                              = [
+          + "10.20.2.0/24",
+        ]
+      + default_outbound_access_enabled               = true
+      + id                                            = (known after apply)
+      + name                                          = "snet-ci"
+      + private_endpoint_network_policies             = "Disabled"
+      + private_link_service_network_policies_enabled = true
+      + resource_group_name                           = "flight-reservation-application-dev-rg"
+      + virtual_network_name                          = "flight-reservation-application-dev-vnet"
+    }
+
+  # module.network.azurerm_subnet.database will be created
+  + resource "azurerm_subnet" "database" {
+      + address_prefixes                              = [
+          + "10.20.4.0/24",
+        ]
+      + default_outbound_access_enabled               = true
+      + id                                            = (known after apply)
+      + name                                          = "snet-database"
+      + private_endpoint_network_policies             = "Disabled"
+      + private_link_service_network_policies_enabled = true
+      + resource_group_name                           = "flight-reservation-application-dev-rg"
+      + virtual_network_name                          = "flight-reservation-application-dev-vnet"
+
+      + delegation {
+          + name = "mysql-flexible-server-delegation"
+
+          + service_delegation {
+              + actions = [
+                  + "Microsoft.Network/virtualNetworks/subnets/join/action",
+                ]
+              + name    = "Microsoft.DBforMySQL/flexibleServers"
+            }
+        }
+    }
+
+  # module.network.azurerm_subnet.monitoring will be created
+  + resource "azurerm_subnet" "monitoring" {
+      + address_prefixes                              = [
+          + "10.20.3.0/24",
+        ]
+      + default_outbound_access_enabled               = true
+      + id                                            = (known after apply)
+      + name                                          = "snet-monitoring"
+      + private_endpoint_network_policies             = "Disabled"
+      + private_link_service_network_policies_enabled = true
+      + resource_group_name                           = "flight-reservation-application-dev-rg"
+      + virtual_network_name                          = "flight-reservation-application-dev-vnet"
+    }
+
+  # module.network.azurerm_subnet_network_security_group_association.ci will be created
+  + resource "azurerm_subnet_network_security_group_association" "ci" {
+      + id                        = (known after apply)
+      + network_security_group_id = (known after apply)
+      + subnet_id                 = (known after apply)
+    }
+
+  # module.network.azurerm_subnet_network_security_group_association.monitoring will be created
+  + resource "azurerm_subnet_network_security_group_association" "monitoring" {
+      + id                        = (known after apply)
+      + network_security_group_id = (known after apply)
+      + subnet_id                 = (known after apply)
+    }
+
+  # module.network.azurerm_virtual_network.this will be created
+  + resource "azurerm_virtual_network" "this" {
+      + address_space                  = [
+          + "10.20.0.0/16",
+        ]
+      + dns_servers                    = (known after apply)
+      + guid                           = (known after apply)
+      + id                             = (known after apply)
+      + location                       = "centralindia"
+      + name                           = "flight-reservation-application-dev-vnet"
+      + private_endpoint_vnet_policies = "Disabled"
+      + resource_group_name            = "flight-reservation-application-dev-rg"
+      + subnet                         = (known after apply)
+    }
+
+  # module.sns.azurerm_monitor_action_group.this will be created
+  + resource "azurerm_monitor_action_group" "this" {
+      + enabled             = true
+      + id                  = (known after apply)
+      + location            = "global"
+      + name                = "flight-reservation-application-dev-alerts"
+      + resource_group_name = "flight-reservation-application-dev-rg"
+      + short_name          = "flightalerts"
+      + tags                = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "flight-reservation-application"
+        }
+
+      + email_receiver {
+          + email_address           = "anurag.patil.devops@gmail.com"
+          + name                    = "primary-email"
+          + use_common_alert_schema = true
+        }
+    }
+
+  # module.storage.azurerm_storage_account.this will be created
+  + resource "azurerm_storage_account" "this" {
+      + access_tier                        = (known after apply)
+      + account_kind                       = "StorageV2"
+      + account_replication_type           = "LRS"
+      + account_tier                       = "Standard"
+      + allow_nested_items_to_be_public    = false
+      + cross_tenant_replication_enabled   = false
+      + default_to_oauth_authentication    = false
+      + dns_endpoint_type                  = "Standard"
+      + https_traffic_only_enabled         = true
+      + id                                 = (known after apply)
+      + infrastructure_encryption_enabled  = false
+      + is_hns_enabled                     = false
+      + large_file_share_enabled           = (known after apply)
+      + local_user_enabled                 = true
+      + location                           = "centralindia"
+      + min_tls_version                    = "TLS1_2"
+      + name                               = (known after apply)
+      + nfsv3_enabled                      = false
+      + primary_access_key                 = (sensitive value)
+      + primary_blob_connection_string     = (sensitive value)
+      + primary_blob_endpoint              = (known after apply)
+      + primary_blob_host                  = (known after apply)
+      + primary_blob_internet_endpoint     = (known after apply)
+      + primary_blob_internet_host         = (known after apply)
+      + primary_blob_microsoft_endpoint    = (known after apply)
+      + primary_blob_microsoft_host        = (known after apply)
+      + primary_connection_string          = (sensitive value)
+      + primary_dfs_endpoint               = (known after apply)
+      + primary_dfs_host                   = (known after apply)
+      + primary_dfs_internet_endpoint      = (known after apply)
+      + primary_dfs_internet_host          = (known after apply)
+      + primary_dfs_microsoft_endpoint     = (known after apply)
+      + primary_dfs_microsoft_host         = (known after apply)
+      + primary_file_endpoint              = (known after apply)
+      + primary_file_host                  = (known after apply)
+      + primary_file_internet_endpoint     = (known after apply)
+      + primary_file_internet_host         = (known after apply)
+      + primary_file_microsoft_endpoint    = (known after apply)
+      + primary_file_microsoft_host        = (known after apply)
+      + primary_location                   = (known after apply)
+      + primary_queue_endpoint             = (known after apply)
+      + primary_queue_host                 = (known after apply)
+      + primary_queue_microsoft_endpoint   = (known after apply)
+      + primary_queue_microsoft_host       = (known after apply)
+      + primary_table_endpoint             = (known after apply)
+      + primary_table_host                 = (known after apply)
+      + primary_table_microsoft_endpoint   = (known after apply)
+      + primary_table_microsoft_host       = (known after apply)
+      + primary_web_endpoint               = (known after apply)
+      + primary_web_host                   = (known after apply)
+      + primary_web_internet_endpoint      = (known after apply)
+      + primary_web_internet_host          = (known after apply)
+      + primary_web_microsoft_endpoint     = (known after apply)
+      + primary_web_microsoft_host         = (known after apply)
+      + public_network_access_enabled      = true
+      + queue_encryption_key_type          = "Service"
+      + resource_group_name                = "flight-reservation-application-dev-rg"
+      + secondary_access_key               = (sensitive value)
+      + secondary_blob_connection_string   = (sensitive value)
+      + secondary_blob_endpoint            = (known after apply)
+      + secondary_blob_host                = (known after apply)
+      + secondary_blob_internet_endpoint   = (known after apply)
+      + secondary_blob_internet_host       = (known after apply)
+      + secondary_blob_microsoft_endpoint  = (known after apply)
+      + secondary_blob_microsoft_host      = (known after apply)
+      + secondary_connection_string        = (sensitive value)
+      + secondary_dfs_endpoint             = (known after apply)
+      + secondary_dfs_host                 = (known after apply)
+      + secondary_dfs_internet_endpoint    = (known after apply)
+      + secondary_dfs_internet_host        = (known after apply)
+      + secondary_dfs_microsoft_endpoint   = (known after apply)
+      + secondary_dfs_microsoft_host       = (known after apply)
+      + secondary_file_endpoint            = (known after apply)
+      + secondary_file_host                = (known after apply)
+      + secondary_file_internet_endpoint   = (known after apply)
+      + secondary_file_internet_host       = (known after apply)
+      + secondary_file_microsoft_endpoint  = (known after apply)
+      + secondary_file_microsoft_host      = (known after apply)
+      + secondary_location                 = (known after apply)
+      + secondary_queue_endpoint           = (known after apply)
+      + secondary_queue_host               = (known after apply)
+      + secondary_queue_microsoft_endpoint = (known after apply)
+      + secondary_queue_microsoft_host     = (known after apply)
+      + secondary_table_endpoint           = (known after apply)
+      + secondary_table_host               = (known after apply)
+      + secondary_table_microsoft_endpoint = (known after apply)
+      + secondary_table_microsoft_host     = (known after apply)
+      + secondary_web_endpoint             = (known after apply)
+      + secondary_web_host                 = (known after apply)
+      + secondary_web_internet_endpoint    = (known after apply)
+      + secondary_web_internet_host        = (known after apply)
+      + secondary_web_microsoft_endpoint   = (known after apply)
+      + secondary_web_microsoft_host       = (known after apply)
+      + sftp_enabled                       = false
+      + shared_access_key_enabled          = true
+      + table_encryption_key_type          = "Service"
+      + tags                               = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "flight-reservation-application"
+        }
+
+      + blob_properties {
+          + change_feed_enabled      = false
+          + default_service_version  = (known after apply)
+          + last_access_time_enabled = false
+          + versioning_enabled       = true
+        }
+
+      + network_rules (known after apply)
+
+      + queue_properties (known after apply)
+
+      + routing (known after apply)
+
+      + share_properties (known after apply)
+
+      + static_website (known after apply)
+    }
+
+  # module.storage.azurerm_storage_container.flight_assets will be created
+  + resource "azurerm_storage_container" "flight_assets" {
+      + container_access_type             = "private"
+      + default_encryption_scope          = (known after apply)
+      + encryption_scope_override_enabled = true
+      + has_immutability_policy           = (known after apply)
+      + has_legal_hold                    = (known after apply)
+      + id                                = (known after apply)
+      + metadata                          = (known after apply)
+      + name                              = "flight-assets"
+      + resource_manager_id               = (known after apply)
+      + storage_account_id                = (known after apply)
+      + url                               = (known after apply)
+    }
+
+  # module.storage.azurerm_storage_management_policy.this will be created
+  + resource "azurerm_storage_management_policy" "this" {
+      + id                 = (known after apply)
+      + storage_account_id = (known after apply)
+
+      + rule {
+          + enabled = true
+          + name    = "flight-reservation-lifecycle"
+
+          + actions {
+              + base_blob {
+                  + delete_after_days_since_creation_greater_than                  = -1
+                  + delete_after_days_since_last_access_time_greater_than          = -1
+                  + delete_after_days_since_modification_greater_than              = 365
+                  + tier_to_archive_after_days_since_creation_greater_than         = -1
+                  + tier_to_archive_after_days_since_last_access_time_greater_than = -1
+                  + tier_to_archive_after_days_since_last_tier_change_greater_than = -1
+                  + tier_to_archive_after_days_since_modification_greater_than     = -1
+                  + tier_to_cold_after_days_since_creation_greater_than            = -1
+                  + tier_to_cold_after_days_since_last_access_time_greater_than    = -1
+                  + tier_to_cold_after_days_since_modification_greater_than        = -1
+                  + tier_to_cool_after_days_since_creation_greater_than            = -1
+                  + tier_to_cool_after_days_since_last_access_time_greater_than    = -1
+                  + tier_to_cool_after_days_since_modification_greater_than        = 30
+                }
+              + version {
+                  + change_tier_to_archive_after_days_since_creation               = -1
+                  + change_tier_to_cool_after_days_since_creation                  = 30
+                  + delete_after_days_since_creation                               = 365
+                  + tier_to_archive_after_days_since_last_tier_change_greater_than = -1
+                  + tier_to_cold_after_days_since_creation_greater_than            = -1
+                }
+            }
+
+          + filters {
+              + blob_types = [
+                  + "blockBlob",
+                ]
+            }
+        }
+    }
+
+  # module.storage.random_string.suffix will be created
+  + resource "random_string" "suffix" {
+      + id          = (known after apply)
+      + length      = 8
+      + lower       = true
+      + min_lower   = 0
+      + min_numeric = 0
+      + min_special = 0
+      + min_upper   = 0
+      + number      = true
+      + numeric     = true
+      + result      = (known after apply)
+      + special     = false
+      + upper       = false
+    }
+
+  # module.vm.azurerm_linux_virtual_machine.this["ci"] will be created
+  + resource "azurerm_linux_virtual_machine" "this" {
+      + admin_username                                         = "azureadmin"
+      + allow_extension_operations                             = (known after apply)
+      + bypass_platform_safety_checks_on_user_schedule_enabled = false
+      + computer_name                                          = "flightci"
+      + disable_password_authentication                        = true
+      + disk_controller_type                                   = (known after apply)
+      + extensions_time_budget                                 = "PT1H30M"
+      + id                                                     = (known after apply)
+      + location                                               = "centralindia"
+      + max_bid_price                                          = -1
+      + name                                                   = "flight-reservation-ci-vm"
+      + network_interface_ids                                  = (known after apply)
+      + os_managed_disk_id                                     = (known after apply)
+      + patch_assessment_mode                                  = (known after apply)
+      + patch_mode                                             = (known after apply)
+      + platform_fault_domain                                  = -1
+      + priority                                               = "Regular"
+      + private_ip_address                                     = (known after apply)
+      + private_ip_addresses                                   = (known after apply)
+      + provision_vm_agent                                     = (known after apply)
+      + public_ip_address                                      = (known after apply)
+      + public_ip_addresses                                    = (known after apply)
+      + resource_group_name                                    = "flight-reservation-application-dev-rg"
+      + size                                                   = "Standard_D2s_v3"
+      + tags                                                   = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "flight-reservation-application"
+          + "Role"        = "ci"
+        }
+      + virtual_machine_id                                     = (known after apply)
+      + vm_agent_platform_updates_enabled                      = (known after apply)
+
+      + admin_ssh_key {
+          + public_key = <<-EOT
+                ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDsjorovoUv073q8kMgFoLQYLbxQqTCAoKMOm/ae2jHzpKtFINsd4GPL5QBAGNR3wX+2K1iXR9TRAjkW5V0Y1P1MII2AXkFIRnpKLmCNthQXgHB932kpC53XmMqIdi736umgP/0uavQmZL4vs+pS870gjkWDXQHZYrj9CRzmzVE3dR3c9A2rovhkT9vH3/xd/5Gy+Rlirh2VwelPCs2I7EKG8MmpqD8j0l0q9UvoDJQAj4KSWXiHewr03D4eFNVaX5cCQJgX/XXhY0VmsWLKJ5osYyyTLq3jNWRrGb2nmL8IV+j5T8fsrh3Stm6b1zOsfg5SoawVOAj2KtWOwlMpeyUVB05Rr9vLmBCb7iYbK7QaT1LW7ZHVWeI3tt2HxhjvoLV7LAmfOuyAKxU03D1II/WQfN4qchKpteOeJ5yi23OIUnVv09/7B/JICfd23BINPptOI/qpcftyjc7WXihPwIqgwoKdJ+hP/pMahYX1gMcc0Vp2Hh+sTFCidk1KdkUM+8k3rcpz74tPgoR7hkODX1q2Lr9J9tNWb0kbrqJK56Y0PDCQSbEpmLKGziPjT31+DSX0BPEIhMcFbLmuODfu0zdqxrwwjycagfeHHZ+Ej9rK1O5YNGLxBFLvpxQgeO+oxS4a21bOiwGbgYOoWra0ZKmm1/0Rt1qHh20oSoqBNztYw== flight-reservation-application
+            EOT
+          + username   = "azureadmin"
+        }
+
+      + os_disk {
+          + caching                   = "ReadWrite"
+          + disk_size_gb              = 30
+          + id                        = (known after apply)
+          + name                      = (known after apply)
+          + storage_account_type      = "Standard_LRS"
+          + write_accelerator_enabled = false
+        }
+
+      + source_image_reference {
+          + offer     = "ubuntu-24_04-lts"
+          + publisher = "Canonical"
+          + sku       = "server"
+          + version   = "latest"
+        }
+
+      + termination_notification (known after apply)
+    }
+
+  # module.vm.azurerm_linux_virtual_machine.this["monitoring"] will be created
+  + resource "azurerm_linux_virtual_machine" "this" {
+      + admin_username                                         = "azureadmin"
+      + allow_extension_operations                             = (known after apply)
+      + bypass_platform_safety_checks_on_user_schedule_enabled = false
+      + computer_name                                          = "flightmonitor"
+      + disable_password_authentication                        = true
+      + disk_controller_type                                   = (known after apply)
+      + extensions_time_budget                                 = "PT1H30M"
+      + id                                                     = (known after apply)
+      + location                                               = "centralindia"
+      + max_bid_price                                          = -1
+      + name                                                   = "flight-reservation-monitoring-vm"
+      + network_interface_ids                                  = (known after apply)
+      + os_managed_disk_id                                     = (known after apply)
+      + patch_assessment_mode                                  = (known after apply)
+      + patch_mode                                             = (known after apply)
+      + platform_fault_domain                                  = -1
+      + priority                                               = "Regular"
+      + private_ip_address                                     = (known after apply)
+      + private_ip_addresses                                   = (known after apply)
+      + provision_vm_agent                                     = (known after apply)
+      + public_ip_address                                      = (known after apply)
+      + public_ip_addresses                                    = (known after apply)
+      + resource_group_name                                    = "flight-reservation-application-dev-rg"
+      + size                                                   = "Standard_D2s_v3"
+      + tags                                                   = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "flight-reservation-application"
+          + "Role"        = "monitoring"
+        }
+      + virtual_machine_id                                     = (known after apply)
+      + vm_agent_platform_updates_enabled                      = (known after apply)
+
+      + admin_ssh_key {
+          + public_key = <<-EOT
+                ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDsjorovoUv073q8kMgFoLQYLbxQqTCAoKMOm/ae2jHzpKtFINsd4GPL5QBAGNR3wX+2K1iXR9TRAjkW5V0Y1P1MII2AXkFIRnpKLmCNthQXgHB932kpC53XmMqIdi736umgP/0uavQmZL4vs+pS870gjkWDXQHZYrj9CRzmzVE3dR3c9A2rovhkT9vH3/xd/5Gy+Rlirh2VwelPCs2I7EKG8MmpqD8j0l0q9UvoDJQAj4KSWXiHewr03D4eFNVaX5cCQJgX/XXhY0VmsWLKJ5osYyyTLq3jNWRrGb2nmL8IV+j5T8fsrh3Stm6b1zOsfg5SoawVOAj2KtWOwlMpeyUVB05Rr9vLmBCb7iYbK7QaT1LW7ZHVWeI3tt2HxhjvoLV7LAmfOuyAKxU03D1II/WQfN4qchKpteOeJ5yi23OIUnVv09/7B/JICfd23BINPptOI/qpcftyjc7WXihPwIqgwoKdJ+hP/pMahYX1gMcc0Vp2Hh+sTFCidk1KdkUM+8k3rcpz74tPgoR7hkODX1q2Lr9J9tNWb0kbrqJK56Y0PDCQSbEpmLKGziPjT31+DSX0BPEIhMcFbLmuODfu0zdqxrwwjycagfeHHZ+Ej9rK1O5YNGLxBFLvpxQgeO+oxS4a21bOiwGbgYOoWra0ZKmm1/0Rt1qHh20oSoqBNztYw== flight-reservation-application
+            EOT
+          + username   = "azureadmin"
+        }
+
+      + os_disk {
+          + caching                   = "ReadWrite"
+          + disk_size_gb              = 30
+          + id                        = (known after apply)
+          + name                      = (known after apply)
+          + storage_account_type      = "Standard_LRS"
+          + write_accelerator_enabled = false
+        }
+
+      + source_image_reference {
+          + offer     = "ubuntu-24_04-lts"
+          + publisher = "Canonical"
+          + sku       = "server"
+          + version   = "latest"
+        }
+
+      + termination_notification (known after apply)
+    }
+
+  # module.vm.azurerm_network_interface.this["ci"] will be created
+  + resource "azurerm_network_interface" "this" {
+      + accelerated_networking_enabled = false
+      + applied_dns_servers            = (known after apply)
+      + id                             = (known after apply)
+      + internal_domain_name_suffix    = (known after apply)
+      + ip_forwarding_enabled          = false
+      + location                       = "centralindia"
+      + mac_address                    = (known after apply)
+      + name                           = "flight-reservation-ci-vm-nic"
+      + private_ip_address             = (known after apply)
+      + private_ip_addresses           = (known after apply)
+      + resource_group_name            = "flight-reservation-application-dev-rg"
+      + virtual_machine_id             = (known after apply)
+
+      + ip_configuration {
+          + gateway_load_balancer_frontend_ip_configuration_id = (known after apply)
+          + name                                               = "internal"
+          + primary                                            = (known after apply)
+          + private_ip_address                                 = (known after apply)
+          + private_ip_address_allocation                      = "Dynamic"
+          + private_ip_address_version                         = "IPv4"
+          + public_ip_address_id                               = (known after apply)
+          + subnet_id                                          = (known after apply)
+        }
+    }
+
+  # module.vm.azurerm_network_interface.this["monitoring"] will be created
+  + resource "azurerm_network_interface" "this" {
+      + accelerated_networking_enabled = false
+      + applied_dns_servers            = (known after apply)
+      + id                             = (known after apply)
+      + internal_domain_name_suffix    = (known after apply)
+      + ip_forwarding_enabled          = false
+      + location                       = "centralindia"
+      + mac_address                    = (known after apply)
+      + name                           = "flight-reservation-monitoring-vm-nic"
+      + private_ip_address             = (known after apply)
+      + private_ip_addresses           = (known after apply)
+      + resource_group_name            = "flight-reservation-application-dev-rg"
+      + virtual_machine_id             = (known after apply)
+
+      + ip_configuration {
+          + gateway_load_balancer_frontend_ip_configuration_id = (known after apply)
+          + name                                               = "internal"
+          + primary                                            = (known after apply)
+          + private_ip_address                                 = (known after apply)
+          + private_ip_address_allocation                      = "Dynamic"
+          + private_ip_address_version                         = "IPv4"
+          + public_ip_address_id                               = (known after apply)
+          + subnet_id                                          = (known after apply)
+        }
+    }
+
+  # module.vm.azurerm_network_interface_security_group_association.this["ci"] will be created
+  + resource "azurerm_network_interface_security_group_association" "this" {
+      + id                        = (known after apply)
+      + network_interface_id      = (known after apply)
+      + network_security_group_id = (known after apply)
+    }
+
+  # module.vm.azurerm_network_interface_security_group_association.this["monitoring"] will be created
+  + resource "azurerm_network_interface_security_group_association" "this" {
+      + id                        = (known after apply)
+      + network_interface_id      = (known after apply)
+      + network_security_group_id = (known after apply)
+    }
+
+  # module.vm.azurerm_network_security_group.this["ci"] will be created
+  + resource "azurerm_network_security_group" "this" {
+      + id                  = (known after apply)
+      + location            = "centralindia"
+      + name                = "flight-reservation-ci-vm-nsg"
+      + resource_group_name = "flight-reservation-application-dev-rg"
+      + security_rule       = [
+          + {
+              + access                                     = "Allow"
+              + destination_address_prefix                 = "*"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
+              + destination_port_range                     = "22"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "Allow-SSH"
+              + priority                                   = 100
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "*"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+                # (1 unchanged attribute hidden)
+            },
+          + {
+              + access                                     = "Allow"
+              + destination_address_prefix                 = "*"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
+              + destination_port_range                     = "8080"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "Allow-Jenkins"
+              + priority                                   = 110
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "*"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+                # (1 unchanged attribute hidden)
+            },
+          + {
+              + access                                     = "Allow"
+              + destination_address_prefix                 = "*"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
+              + destination_port_range                     = "9000"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "Allow-SonarQube"
+              + priority                                   = 120
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "*"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+                # (1 unchanged attribute hidden)
+            },
+        ]
+    }
+
+  # module.vm.azurerm_network_security_group.this["monitoring"] will be created
+  + resource "azurerm_network_security_group" "this" {
+      + id                  = (known after apply)
+      + location            = "centralindia"
+      + name                = "flight-reservation-monitoring-vm-nsg"
+      + resource_group_name = "flight-reservation-application-dev-rg"
+      + security_rule       = [
+          + {
+              + access                                     = "Allow"
+              + destination_address_prefix                 = "*"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
+              + destination_port_range                     = "22"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "Allow-SSH"
+              + priority                                   = 100
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "*"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+                # (1 unchanged attribute hidden)
+            },
+          + {
+              + access                                     = "Allow"
+              + destination_address_prefix                 = "*"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
+              + destination_port_range                     = "3000"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "Allow-Grafana"
+              + priority                                   = 110
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "*"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+                # (1 unchanged attribute hidden)
+            },
+          + {
+              + access                                     = "Allow"
+              + destination_address_prefix                 = "*"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
+              + destination_port_range                     = "9090"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "Allow-Prometheus"
+              + priority                                   = 120
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "*"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+                # (1 unchanged attribute hidden)
+            },
+        ]
+    }
+
+  # module.vm.azurerm_public_ip.this["ci"] will be created
+  + resource "azurerm_public_ip" "this" {
+      + allocation_method       = "Static"
+      + ddos_protection_mode    = "VirtualNetworkInherited"
+      + fqdn                    = (known after apply)
+      + id                      = (known after apply)
+      + idle_timeout_in_minutes = 4
+      + ip_address              = (known after apply)
+      + ip_version              = "IPv4"
+      + location                = "centralindia"
+      + name                    = "flight-reservation-ci-vm-pip"
+      + resource_group_name     = "flight-reservation-application-dev-rg"
+      + sku                     = "Standard"
+      + sku_tier                = "Regional"
+    }
+
+  # module.vm.azurerm_public_ip.this["monitoring"] will be created
+  + resource "azurerm_public_ip" "this" {
+      + allocation_method       = "Static"
+      + ddos_protection_mode    = "VirtualNetworkInherited"
+      + fqdn                    = (known after apply)
+      + id                      = (known after apply)
+      + idle_timeout_in_minutes = 4
+      + ip_address              = (known after apply)
+      + ip_version              = "IPv4"
+      + location                = "centralindia"
+      + name                    = "flight-reservation-monitoring-vm-pip"
+      + resource_group_name     = "flight-reservation-application-dev-rg"
+      + sku                     = "Standard"
+      + sku_tier                = "Regional"
+    }
+
+Plan: 36 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + aks_cluster_name        = "flight-reservation-application-dev-aks"
+  + aks_kubernetes_version  = (known after apply)
+  + aks_oidc_issuer_url     = (known after apply)
+  + budget_name             = "flight-reservation-application-dev-monthly-budget"
+  + ci_public_ip            = (known after apply)
+  + monitor_action_group_id = (known after apply)
+  + monitoring_public_ip    = (known after apply)
+  + mysql_admin_password    = (sensitive value)
+  + mysql_admin_username    = "flightadmin"
+  + mysql_database_name     = "flight_reservation"
+  + mysql_fqdn              = (sensitive value)
+  + mysql_server_name       = (known after apply)
+  + resource_group_name     = "flight-reservation-application-dev-rg"
+  + storage_account_name    = (known after apply)
+  + vnet_name               = "flight-reservation-application-dev-vnet"

@@ -1,0 +1,789 @@
+{
+  "version": 4,
+  "terraform_version": "1.15.8",
+  "serial": 260,
+  "lineage": "363ccfcc-b3ca-ff6c-47c7-c5ff346237a2",
+  "outputs": {
+    "aks_cluster_name": {
+      "value": "flight-reservation-application-dev-aks",
+      "type": "string"
+    },
+    "aks_resource_group_name": {
+      "value": "flight-reservation-application-aks-dev-rg",
+      "type": "string"
+    },
+    "aks_vnet_name": {
+      "value": "flight-reservation-application-aks-dev-vnet",
+      "type": "string"
+    },
+    "ci_vm_private_ip": {
+      "value": "10.10.1.4",
+      "type": "string"
+    },
+    "ci_vm_public_ip": {
+      "value": "52.140.151.205",
+      "type": "string"
+    },
+    "monitoring_vm_private_ip": {
+      "value": "10.10.2.4",
+      "type": "string"
+    },
+    "monitoring_vm_public_ip": {
+      "value": "52.140.151.202",
+      "type": "string"
+    },
+    "vm_resource_group_name": {
+      "value": "flight-reservation-application-vm-dev-rg",
+      "type": "string"
+    },
+    "vm_vnet_name": {
+      "value": "flight-reservation-application-vm-dev-vnet",
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "module": "module.aks",
+      "mode": "managed",
+      "type": "azurerm_role_assignment",
+      "name": "network_contributor",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "condition": "",
+            "condition_version": "",
+            "delegated_managed_identity_resource_id": "",
+            "description": "",
+            "id": "/subscriptions/3a2b3e52-7ab7-4b46-af65-cddfb1489b0a/resourceGroups/flight-reservation-application-aks-dev-rg/providers/Microsoft.Network/virtualNetworks/flight-reservation-application-aks-dev-vnet/subnets/snet-aks/providers/Microsoft.Authorization/roleAssignments/349dceef-5186-dc12-2a7d-f30ff3f4c847",
+            "name": "349dceef-5186-dc12-2a7d-f30ff3f4c847",
+            "principal_id": "5aa5d9df-1f47-437d-a7d7-9a6538c20d55",
+            "principal_type": "ServicePrincipal",
+            "role_definition_id": "/subscriptions/3a2b3e52-7ab7-4b46-af65-cddfb1489b0a/providers/Microsoft.Authorization/roleDefinitions/4d97b98b-1d4f-4787-a291-c67834d212e7",
+            "role_definition_name": "Network Contributor",
+            "scope": "/subscriptions/3a2b3e52-7ab7-4b46-af65-cddfb1489b0a/resourceGroups/flight-reservation-application-aks-dev-rg/providers/Microsoft.Network/virtualNetworks/flight-reservation-application-aks-dev-vnet/subnets/snet-aks",
+            "skip_service_principal_aad_check": null,
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "module.aks.azurerm_user_assigned_identity.aks",
+            "module.aks_network.azurerm_resource_group.this",
+            "module.aks_network.azurerm_subnet.this",
+            "module.aks_network.azurerm_virtual_network.this"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.aks",
+      "mode": "managed",
+      "type": "azurerm_user_assigned_identity",
+      "name": "aks",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "client_id": "7edcdf90-0f16-47a8-904a-544c9f2c5888",
+            "id": "/subscriptions/3a2b3e52-7ab7-4b46-af65-cddfb1489b0a/resourceGroups/flight-reservation-application-aks-dev-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/flight-reservation-application-dev-aks-identity",
+            "isolation_scope": "",
+            "location": "australiasoutheast",
+            "name": "flight-reservation-application-dev-aks-identity",
+            "principal_id": "5aa5d9df-1f47-437d-a7d7-9a6538c20d55",
+            "resource_group_name": "flight-reservation-application-aks-dev-rg",
+            "tags": {},
+            "tenant_id": "5bb600c5-4f1f-4325-9247-a9cf51359389",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0=",
+          "dependencies": [
+            "module.aks_network.azurerm_resource_group.this"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.aks_network",
+      "mode": "managed",
+      "type": "azurerm_network_security_group",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "index_key": "aks",
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/3a2b3e52-7ab7-4b46-af65-cddfb1489b0a/resourceGroups/flight-reservation-application-aks-dev-rg/providers/Microsoft.Network/networkSecurityGroups/snet-aks-nsg",
+            "location": "australiasoutheast",
+            "name": "snet-aks-nsg",
+            "resource_group_name": "flight-reservation-application-aks-dev-rg",
+            "security_rule": [
+              {
+                "access": "Allow",
+                "description": "",
+                "destination_address_prefix": "*",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "22",
+                "destination_port_ranges": [],
+                "direction": "Inbound",
+                "name": "AllowSSH",
+                "priority": 100,
+                "protocol": "Tcp",
+                "source_address_prefix": "*",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              }
+            ],
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "name": "snet-aks-nsg",
+            "resource_group_name": "flight-reservation-application-aks-dev-rg",
+            "subscription_id": "3a2b3e52-7ab7-4b46-af65-cddfb1489b0a"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "module.aks_network.azurerm_resource_group.this"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.aks_network",
+      "mode": "managed",
+      "type": "azurerm_resource_group",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/3a2b3e52-7ab7-4b46-af65-cddfb1489b0a/resourceGroups/flight-reservation-application-aks-dev-rg",
+            "location": "australiasoutheast",
+            "managed_by": "",
+            "name": "flight-reservation-application-aks-dev-rg",
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "name": "flight-reservation-application-aks-dev-rg",
+            "subscription_id": "3a2b3e52-7ab7-4b46-af65-cddfb1489b0a"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo1NDAwMDAwMDAwMDAwLCJkZWxldGUiOjU0MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjo1NDAwMDAwMDAwMDAwfX0="
+        }
+      ]
+    },
+    {
+      "module": "module.aks_network",
+      "mode": "managed",
+      "type": "azurerm_subnet",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "index_key": "aks",
+          "schema_version": 0,
+          "attributes": {
+            "address_prefixes": [
+              "10.20.1.0/24"
+            ],
+            "default_outbound_access_enabled": true,
+            "delegation": [],
+            "id": "/subscriptions/3a2b3e52-7ab7-4b46-af65-cddfb1489b0a/resourceGroups/flight-reservation-application-aks-dev-rg/providers/Microsoft.Network/virtualNetworks/flight-reservation-application-aks-dev-vnet/subnets/snet-aks",
+            "ip_address_pool": [],
+            "name": "snet-aks",
+            "private_endpoint_network_policies": "Disabled",
+            "private_link_service_network_policies_enabled": true,
+            "resource_group_name": "flight-reservation-application-aks-dev-rg",
+            "service_endpoint_policy_ids": [],
+            "service_endpoints": [],
+            "sharing_scope": "",
+            "timeouts": null,
+            "virtual_network_name": "flight-reservation-application-aks-dev-vnet"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "name": "snet-aks",
+            "resource_group_name": "flight-reservation-application-aks-dev-rg",
+            "subscription_id": "3a2b3e52-7ab7-4b46-af65-cddfb1489b0a",
+            "virtual_network_name": "flight-reservation-application-aks-dev-vnet"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "module.aks_network.azurerm_resource_group.this",
+            "module.aks_network.azurerm_virtual_network.this"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.aks_network",
+      "mode": "managed",
+      "type": "azurerm_subnet_network_security_group_association",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "index_key": "aks",
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/3a2b3e52-7ab7-4b46-af65-cddfb1489b0a/resourceGroups/flight-reservation-application-aks-dev-rg/providers/Microsoft.Network/virtualNetworks/flight-reservation-application-aks-dev-vnet/subnets/snet-aks",
+            "network_security_group_id": "/subscriptions/3a2b3e52-7ab7-4b46-af65-cddfb1489b0a/resourceGroups/flight-reservation-application-aks-dev-rg/providers/Microsoft.Network/networkSecurityGroups/snet-aks-nsg",
+            "subnet_id": "/subscriptions/3a2b3e52-7ab7-4b46-af65-cddfb1489b0a/resourceGroups/flight-reservation-application-aks-dev-rg/providers/Microsoft.Network/virtualNetworks/flight-reservation-application-aks-dev-vnet/subnets/snet-aks",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "module.aks_network.azurerm_network_security_group.this",
+            "module.aks_network.azurerm_resource_group.this",
+            "module.aks_network.azurerm_subnet.this",
+            "module.aks_network.azurerm_virtual_network.this"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.aks_network",
+      "mode": "managed",
+      "type": "azurerm_virtual_network",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address_space": [
+              "10.20.0.0/16"
+            ],
+            "bgp_community": "",
+            "ddos_protection_plan": [],
+            "dns_servers": [],
+            "edge_zone": "",
+            "encryption": [],
+            "flow_timeout_in_minutes": 0,
+            "guid": "ee073ec5-c2dc-4aef-807a-24972cff92dd",
+            "id": "/subscriptions/3a2b3e52-7ab7-4b46-af65-cddfb1489b0a/resourceGroups/flight-reservation-application-aks-dev-rg/providers/Microsoft.Network/virtualNetworks/flight-reservation-application-aks-dev-vnet",
+            "ip_address_pool": [],
+            "location": "australiasoutheast",
+            "name": "flight-reservation-application-aks-dev-vnet",
+            "private_endpoint_vnet_policies": "Disabled",
+            "resource_group_name": "flight-reservation-application-aks-dev-rg",
+            "subnet": [
+              {
+                "address_prefixes": [
+                  "10.20.1.0/24"
+                ],
+                "default_outbound_access_enabled": true,
+                "delegation": [],
+                "id": "/subscriptions/3a2b3e52-7ab7-4b46-af65-cddfb1489b0a/resourceGroups/flight-reservation-application-aks-dev-rg/providers/Microsoft.Network/virtualNetworks/flight-reservation-application-aks-dev-vnet/subnets/snet-aks",
+                "name": "snet-aks",
+                "private_endpoint_network_policies": "Disabled",
+                "private_link_service_network_policies_enabled": true,
+                "route_table_id": "",
+                "security_group": "/subscriptions/3a2b3e52-7ab7-4b46-af65-cddfb1489b0a/resourceGroups/flight-reservation-application-aks-dev-rg/providers/Microsoft.Network/networkSecurityGroups/snet-aks-nsg",
+                "service_endpoint_policy_ids": [],
+                "service_endpoints": []
+              }
+            ],
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "name": "flight-reservation-application-aks-dev-vnet",
+            "resource_group_name": "flight-reservation-application-aks-dev-rg",
+            "subscription_id": "3a2b3e52-7ab7-4b46-af65-cddfb1489b0a"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "module.aks_network.azurerm_resource_group.this"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.budgets",
+      "mode": "managed",
+      "type": "azurerm_consumption_budget_subscription",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 2,
+          "attributes": {
+            "amount": 20,
+            "etag": "\"1dd3f1c3a89c949\"",
+            "filter": [],
+            "id": "/subscriptions/3a2b3e52-7ab7-4b46-af65-cddfb1489b0a/providers/Microsoft.Consumption/budgets/flight-reservation-application-dev-budget",
+            "name": "flight-reservation-application-dev-budget",
+            "notification": [
+              {
+                "contact_emails": [
+                  "anuragpatil1703@gmail.com"
+                ],
+                "contact_groups": [],
+                "contact_roles": [],
+                "enabled": true,
+                "operator": "GreaterThan",
+                "threshold": 100,
+                "threshold_type": "Actual"
+              },
+              {
+                "contact_emails": [
+                  "anuragpatil1703@gmail.com"
+                ],
+                "contact_groups": [],
+                "contact_roles": [],
+                "enabled": true,
+                "operator": "GreaterThan",
+                "threshold": 80,
+                "threshold_type": "Actual"
+              }
+            ],
+            "subscription_id": "/subscriptions/3a2b3e52-7ab7-4b46-af65-cddfb1489b0a",
+            "time_grain": "Monthly",
+            "time_period": [
+              {
+                "end_date": "2027-09-01T00:00:00Z",
+                "start_date": "2026-09-01T00:00:00Z"
+              }
+            ],
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIyIn0="
+        }
+      ]
+    },
+    {
+      "module": "module.storage",
+      "mode": "managed",
+      "type": "azurerm_storage_account",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 4,
+          "attributes": {
+            "access_tier": "Hot",
+            "account_kind": "StorageV2",
+            "account_replication_type": "LRS",
+            "account_tier": "Standard",
+            "allow_nested_items_to_be_public": true,
+            "allowed_copy_scope": "",
+            "azure_files_authentication": [],
+            "blob_properties": [
+              {
+                "change_feed_enabled": false,
+                "change_feed_retention_in_days": 0,
+                "container_delete_retention_policy": [],
+                "cors_rule": [],
+                "default_service_version": "",
+                "delete_retention_policy": [],
+                "last_access_time_enabled": false,
+                "restore_policy": [],
+                "versioning_enabled": true
+              }
+            ],
+            "cross_tenant_replication_enabled": false,
+            "custom_domain": [],
+            "customer_managed_key": [],
+            "default_to_oauth_authentication": false,
+            "dns_endpoint_type": "Standard",
+            "edge_zone": "",
+            "https_traffic_only_enabled": true,
+            "id": "/subscriptions/3a2b3e52-7ab7-4b46-af65-cddfb1489b0a/resourceGroups/flight-reservation-application-aks-dev-rg/providers/Microsoft.Storage/storageAccounts/flightreservationapplica",
+            "identity": [],
+            "immutability_policy": [],
+            "infrastructure_encryption_enabled": false,
+            "is_hns_enabled": false,
+            "large_file_share_enabled": false,
+            "local_user_enabled": true,
+            "location": "australiasoutheast",
+            "min_tls_version": "TLS1_2",
+            "name": "flightreservationapplica",
+            "network_rules": [],
+            "nfsv3_enabled": false,
+            "primary_access_key": "1SPOJgfWdmTUTLN5WkLXMAW7p/Aent23JRv9BL9HsZq8AMgFIEg2Rxi5+uZZEOblVQtVK8DvVKCG+ASt7T6Qpw==",
+            "primary_blob_connection_string": "DefaultEndpointsProtocol=https;BlobEndpoint=https://flightreservationapplica.blob.core.windows.net/;AccountName=flightreservationapplica;AccountKey=1SPOJgfWdmTUTLN5WkLXMAW7p/Aent23JRv9BL9HsZq8AMgFIEg2Rxi5+uZZEOblVQtVK8DvVKCG+ASt7T6Qpw==",
+            "primary_blob_endpoint": "https://flightreservationapplica.blob.core.windows.net/",
+            "primary_blob_host": "flightreservationapplica.blob.core.windows.net",
+            "primary_blob_internet_endpoint": "",
+            "primary_blob_internet_host": "",
+            "primary_blob_microsoft_endpoint": "",
+            "primary_blob_microsoft_host": "",
+            "primary_connection_string": "DefaultEndpointsProtocol=https;AccountName=flightreservationapplica;AccountKey=1SPOJgfWdmTUTLN5WkLXMAW7p/Aent23JRv9BL9HsZq8AMgFIEg2Rxi5+uZZEOblVQtVK8DvVKCG+ASt7T6Qpw==;EndpointSuffix=core.windows.net",
+            "primary_dfs_endpoint": "https://flightreservationapplica.dfs.core.windows.net/",
+            "primary_dfs_host": "flightreservationapplica.dfs.core.windows.net",
+            "primary_dfs_internet_endpoint": "",
+            "primary_dfs_internet_host": "",
+            "primary_dfs_microsoft_endpoint": "",
+            "primary_dfs_microsoft_host": "",
+            "primary_file_endpoint": "https://flightreservationapplica.file.core.windows.net/",
+            "primary_file_host": "flightreservationapplica.file.core.windows.net",
+            "primary_file_internet_endpoint": "",
+            "primary_file_internet_host": "",
+            "primary_file_microsoft_endpoint": "",
+            "primary_file_microsoft_host": "",
+            "primary_location": "australiasoutheast",
+            "primary_queue_endpoint": "https://flightreservationapplica.queue.core.windows.net/",
+            "primary_queue_host": "flightreservationapplica.queue.core.windows.net",
+            "primary_queue_microsoft_endpoint": "",
+            "primary_queue_microsoft_host": "",
+            "primary_table_endpoint": "https://flightreservationapplica.table.core.windows.net/",
+            "primary_table_host": "flightreservationapplica.table.core.windows.net",
+            "primary_table_microsoft_endpoint": "",
+            "primary_table_microsoft_host": "",
+            "primary_web_endpoint": "https://flightreservationapplica.z26.web.core.windows.net/",
+            "primary_web_host": "flightreservationapplica.z26.web.core.windows.net",
+            "primary_web_internet_endpoint": "",
+            "primary_web_internet_host": "",
+            "primary_web_microsoft_endpoint": "",
+            "primary_web_microsoft_host": "",
+            "provisioned_billing_model_version": "",
+            "public_network_access_enabled": true,
+            "queue_encryption_key_type": "Service",
+            "queue_properties": [
+              {
+                "cors_rule": [],
+                "hour_metrics": [
+                  {
+                    "enabled": false,
+                    "include_apis": false,
+                    "retention_policy_days": 0,
+                    "version": "1.0"
+                  }
+                ],
+                "logging": [
+                  {
+                    "delete": false,
+                    "read": false,
+                    "retention_policy_days": 0,
+                    "version": "1.0",
+                    "write": false
+                  }
+                ],
+                "minute_metrics": [
+                  {
+                    "enabled": false,
+                    "include_apis": false,
+                    "retention_policy_days": 0,
+                    "version": "1.0"
+                  }
+                ]
+              }
+            ],
+            "resource_group_name": "flight-reservation-application-aks-dev-rg",
+            "routing": [],
+            "sas_policy": [],
+            "secondary_access_key": "6Az9bC+gX+guPK5fpleFO2t0aLBm3az+sHIfBFLeeX7gK6393HNPqGayH5fWE+P/iY2Tp1Au06bs+AStJZkMAw==",
+            "secondary_blob_connection_string": "",
+            "secondary_blob_endpoint": "",
+            "secondary_blob_host": "",
+            "secondary_blob_internet_endpoint": "",
+            "secondary_blob_internet_host": "",
+            "secondary_blob_microsoft_endpoint": "",
+            "secondary_blob_microsoft_host": "",
+            "secondary_connection_string": "DefaultEndpointsProtocol=https;AccountName=flightreservationapplica;AccountKey=6Az9bC+gX+guPK5fpleFO2t0aLBm3az+sHIfBFLeeX7gK6393HNPqGayH5fWE+P/iY2Tp1Au06bs+AStJZkMAw==;EndpointSuffix=core.windows.net",
+            "secondary_dfs_endpoint": "",
+            "secondary_dfs_host": "",
+            "secondary_dfs_internet_endpoint": "",
+            "secondary_dfs_internet_host": "",
+            "secondary_dfs_microsoft_endpoint": "",
+            "secondary_dfs_microsoft_host": "",
+            "secondary_file_endpoint": "",
+            "secondary_file_host": "",
+            "secondary_file_internet_endpoint": "",
+            "secondary_file_internet_host": "",
+            "secondary_file_microsoft_endpoint": "",
+            "secondary_file_microsoft_host": "",
+            "secondary_location": "",
+            "secondary_queue_endpoint": "",
+            "secondary_queue_host": "",
+            "secondary_queue_microsoft_endpoint": "",
+            "secondary_queue_microsoft_host": "",
+            "secondary_table_endpoint": "",
+            "secondary_table_host": "",
+            "secondary_table_microsoft_endpoint": "",
+            "secondary_table_microsoft_host": "",
+            "secondary_web_endpoint": "",
+            "secondary_web_host": "",
+            "secondary_web_internet_endpoint": "",
+            "secondary_web_internet_host": "",
+            "secondary_web_microsoft_endpoint": "",
+            "secondary_web_microsoft_host": "",
+            "sftp_enabled": false,
+            "share_properties": [
+              {
+                "cors_rule": [],
+                "retention_policy": [
+                  {
+                    "days": 7
+                  }
+                ],
+                "smb": []
+              }
+            ],
+            "shared_access_key_enabled": true,
+            "static_website": [],
+            "table_encryption_key_type": "Service",
+            "tags": {
+              "environment": "dev",
+              "project": "flight-reservation-application"
+            },
+            "timeouts": null
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "primary_access_key"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "primary_blob_connection_string"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "primary_connection_string"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "secondary_access_key"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "secondary_blob_connection_string"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "secondary_connection_string"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "identity": {
+            "name": "flightreservationapplica",
+            "resource_group_name": "flight-reservation-application-aks-dev-rg",
+            "subscription_id": "3a2b3e52-7ab7-4b46-af65-cddfb1489b0a"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozNjAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjozNjAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiI0In0=",
+          "dependencies": [
+            "module.aks_network.azurerm_resource_group.this",
+            "module.storage.random_string.suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.storage",
+      "mode": "managed",
+      "type": "azurerm_storage_container",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "container_access_type": "private",
+            "default_encryption_scope": "$account-encryption-key",
+            "encryption_scope_override_enabled": true,
+            "has_immutability_policy": false,
+            "has_legal_hold": false,
+            "id": "/subscriptions/3a2b3e52-7ab7-4b46-af65-cddfb1489b0a/resourceGroups/flight-reservation-application-aks-dev-rg/providers/Microsoft.Storage/storageAccounts/flightreservationapplica/blobServices/default/containers/application",
+            "metadata": {},
+            "name": "application",
+            "resource_manager_id": "/subscriptions/3a2b3e52-7ab7-4b46-af65-cddfb1489b0a/resourceGroups/flight-reservation-application-aks-dev-rg/providers/Microsoft.Storage/storageAccounts/flightreservationapplica/blobServices/default/containers/application",
+            "storage_account_id": "/subscriptions/3a2b3e52-7ab7-4b46-af65-cddfb1489b0a/resourceGroups/flight-reservation-application-aks-dev-rg/providers/Microsoft.Storage/storageAccounts/flightreservationapplica",
+            "storage_account_name": "",
+            "timeouts": null,
+            "url": "https://flightreservationapplica.blob.core.windows.net/application"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0=",
+          "dependencies": [
+            "module.aks_network.azurerm_resource_group.this",
+            "module.storage.azurerm_storage_account.this",
+            "module.storage.random_string.suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.storage",
+      "mode": "managed",
+      "type": "random_string",
+      "name": "suffix",
+      "provider": "provider[\"registry.terraform.io/hashicorp/random\"]",
+      "instances": [
+        {
+          "schema_version": 2,
+          "attributes": {
+            "id": "7jn1mipb",
+            "keepers": null,
+            "length": 8,
+            "lower": true,
+            "min_lower": 0,
+            "min_numeric": 0,
+            "min_special": 0,
+            "min_upper": 0,
+            "number": true,
+            "numeric": true,
+            "override_special": null,
+            "result": "7jn1mipb",
+            "special": false,
+            "upper": false
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "module": "module.vm_network",
+      "mode": "managed",
+      "type": "azurerm_resource_group",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/3a2b3e52-7ab7-4b46-af65-cddfb1489b0a/resourceGroups/flight-reservation-application-vm-dev-rg",
+            "location": "australiacentral",
+            "managed_by": "",
+            "name": "flight-reservation-application-vm-dev-rg",
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "name": "flight-reservation-application-vm-dev-rg",
+            "subscription_id": "3a2b3e52-7ab7-4b46-af65-cddfb1489b0a"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo1NDAwMDAwMDAwMDAwLCJkZWxldGUiOjU0MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjo1NDAwMDAwMDAwMDAwfX0="
+        }
+      ]
+    },
+    {
+      "module": "module.vm_network",
+      "mode": "managed",
+      "type": "azurerm_subnet",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "index_key": "ci",
+          "schema_version": 0,
+          "attributes": {
+            "address_prefixes": [
+              "10.10.1.0/24"
+            ],
+            "default_outbound_access_enabled": true,
+            "delegation": [],
+            "id": "/subscriptions/3a2b3e52-7ab7-4b46-af65-cddfb1489b0a/resourceGroups/flight-reservation-application-vm-dev-rg/providers/Microsoft.Network/virtualNetworks/flight-reservation-application-vm-dev-vnet/subnets/snet-ci",
+            "ip_address_pool": [],
+            "name": "snet-ci",
+            "private_endpoint_network_policies": "Disabled",
+            "private_link_service_network_policies_enabled": true,
+            "resource_group_name": "flight-reservation-application-vm-dev-rg",
+            "service_endpoint_policy_ids": null,
+            "service_endpoints": null,
+            "sharing_scope": "",
+            "timeouts": null,
+            "virtual_network_name": "flight-reservation-application-vm-dev-vnet"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "name": "snet-ci",
+            "resource_group_name": "flight-reservation-application-vm-dev-rg",
+            "subscription_id": "3a2b3e52-7ab7-4b46-af65-cddfb1489b0a",
+            "virtual_network_name": "flight-reservation-application-vm-dev-vnet"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "module.vm_network.azurerm_resource_group.this",
+            "module.vm_network.azurerm_virtual_network.this"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.vm_network",
+      "mode": "managed",
+      "type": "azurerm_virtual_network",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address_space": [
+              "10.10.0.0/16"
+            ],
+            "bgp_community": "",
+            "ddos_protection_plan": [],
+            "dns_servers": [],
+            "edge_zone": "",
+            "encryption": [],
+            "flow_timeout_in_minutes": 0,
+            "guid": "4c596c9f-4975-4d40-a941-8b7157186c40",
+            "id": "/subscriptions/3a2b3e52-7ab7-4b46-af65-cddfb1489b0a/resourceGroups/flight-reservation-application-vm-dev-rg/providers/Microsoft.Network/virtualNetworks/flight-reservation-application-vm-dev-vnet",
+            "ip_address_pool": [],
+            "location": "australiacentral",
+            "name": "flight-reservation-application-vm-dev-vnet",
+            "private_endpoint_vnet_policies": "Disabled",
+            "resource_group_name": "flight-reservation-application-vm-dev-rg",
+            "subnet": [],
+            "tags": null,
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "name": "flight-reservation-application-vm-dev-vnet",
+            "resource_group_name": "flight-reservation-application-vm-dev-rg",
+            "subscription_id": "3a2b3e52-7ab7-4b46-af65-cddfb1489b0a"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "module.vm_network.azurerm_resource_group.this"
+          ]
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}

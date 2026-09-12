@@ -1,0 +1,28 @@
+subscription_id = "YOUR-AZURE-SUBSCRIPTION-ID"
+
+location     = "centralindia"
+project_name = "flight-reservation-application"
+environment  = "dev"
+
+admin_username      = "azureadmin"
+ssh_public_key_path = "~/.ssh/id_rsa.pub"
+
+# 2 vCPU / 8 GiB
+vm_size          = "Standard_D2s_v3"
+aks_node_vm_size = "Standard_D2s_v3"
+
+# AKS
+aks_system_node_count = 1
+aks_min_nodes         = 2
+aks_max_nodes         = 3
+
+# Database
+db_admin_username = "flightadmin"
+db_name           = "flight_reservation"
+db_sku_name       = "B_Standard_B1ms"
+
+# Optional email for Azure Monitor alerts
+notification_email = ""
+
+# Monthly Azure budget
+budget_amount = 100
